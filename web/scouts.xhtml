@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:composition template="WEB-INF/layouts/default.xhtml">
+    
+        <ui:define name="mainContent">
+            <h2>Scouts</h2>
+            <h:dataTable value="#{mainController.scouts}" var="scout" class="table table-dark">
+                <h:column>#{scout.firstname}</h:column>
+                <h:column>#{scout.lastname}</h:column>
+                <h:column>
+                    <h:form>
+                        <h:commandButton action="#{mainController.viewScout(scout)}" class="btn btn-danger btn-sm" value="View" />
+                        <h:commandButton action="#{mainController.editScout(scout)}" value="Edit" />
+                        <h:commandButton action="#{mainController.deleteScout(scout)}" value="Delete" />
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+        
+        <ui:define name="subContent">
+            
+            <h2>Scout</h2>
+            <h:form>
+                
+                <h:inputText id="firstname" required="true" label="Vorname" class="form-control" />
+                <h:inputText id="lastname" required="true" label="Nachname" class="form-control" />
+                <h:inputText id="birthdate" required="true" label="Geburtsdatum" class="form-control" />
+                
+                <h:commandButton class="btn btn-success" action="#{mainController.saveScout(scout)}" value="Speichern" />
+                
+            </h:form>
+            
+            
+        </ui:define>
+        
+    </ui:composition>
+</html>
+
