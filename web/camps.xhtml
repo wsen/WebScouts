@@ -2,23 +2,57 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:composition template="WEB-INF/layouts/default.xhtml">
-        
+    
         <ui:define name="mainContent">
             <h2>Camps</h2>
-            <p>Das sind alle Camps...</p>
+            <h:dataTable value="#{mainController.camps}" var="camp" class="table table-dark">
+                <h:column>#{camp.name}</h:column>
+                <h:column>#{camp.location}</h:column>
+                <h:column>
+                    <h:form>
+                        <h:commandButton action="#{mainController.viewCamp(camp)}" class="btn btn-success btn-sm" style="margin-right: 5px" value="View" />
+                        <h:commandButton action="#{mainController.editCamp(camp)}" class="btn btn-warning btn-sm" style="margin-right: 5px" value="Edit" />
+                        <h:commandButton action="#{mainController.deleteCamp(camp)}" class="btn btn-danger btn-sm" value="Delete" />
+                    </h:form>
+                </h:column>
+            </h:dataTable>
         </ui:define>
         
         <ui:define name="subContent">
-            <h2>Nachrichten</h2>
-            <ul>
-                <li>Nachricht 1</li>
-                <li>Nachricht 2</li>
-            </ul>
+            
+            <h2>Camp</h2>
+            <h:form>
+                
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <h:inputText id="name" required="true" label="Name" value="#{mainController.currentCamp.name}" class="form-control is-invalid">
+                        <f:validateLength minimum="2" maximum="50" />
+                    </h:inputText>
+                    <div class="invalid-feedback">
+                        <h:message for="name" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Ort</label>
+                    <h:inputText id="location" required="true" label="Ort" value="#{mainController.currentCamp.location}" class="form-control is-invalid">
+                        <f:validateLength minimum="2" maximum="50" />
+                    </h:inputText>
+                    <div class="invalid-feedback">
+                        <h:message for="location" />
+                    </div>
+                </div>
+                
+                <h:commandButton class="btn btn-success" action="#{mainController.saveCamp(camp)}" value="Speichern" />
+                
+            </h:form>
+            
+            
         </ui:define>
         
     </ui:composition>
 </html>
-

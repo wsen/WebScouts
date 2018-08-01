@@ -8,6 +8,7 @@ package de.gfn.scouts;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ import javax.persistence.Table;
  *
  * @author tlubowiecki
  */
+@ManagedBean
 @Entity
 @Table(name = "camps")
 public class Camp implements Serializable {
@@ -37,7 +39,7 @@ public class Camp implements Serializable {
     @Column(length = 50)
     private String location;
     
-    @OneToMany(mappedBy = "camp", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "camp", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private final List<Scout> scouts = new ArrayList<>();
 
     public Long getId() {

@@ -72,15 +72,16 @@ public class Scout implements Serializable {
         this.birthdate = birthdate;
     }
     
-    /*
-    public LocalDate getBirthdate() {
-        return birthdate;
+    @Column(name = "CAMP_ID", insertable = false, updatable = false)
+    private Long campId;
+
+    public Long getCampId() {
+        return campId;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setCampId(Long campId) {
+        this.campId = campId;
     }
-    */
     
     @Override
     public int hashCode() {
